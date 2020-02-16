@@ -35,6 +35,7 @@
             android:ems="10"
             android:hint="Login"
             android:inputType="textPersonName"
+            android:text="arek"
             android:textColor="@color/colorDarkBeige" />
 
         <EditText
@@ -44,6 +45,7 @@
             android:ems="10"
             android:hint="Hasło"
             android:inputType="textPersonName"
+            android:text="jarek"
             android:textColor="@color/colorDarkBeige" />
 
         <TextView

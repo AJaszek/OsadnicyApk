@@ -1,15 +1,15 @@
 package com.example.osadnicy
 
-import android.graphics.BitmapFactory
-import android.graphics.Canvas
-import android.graphics.Paint
+import android.graphics.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.osadnicy.Player
 import com.example.osadnicy.R
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_game.*
+import kotlinx.android.synthetic.main.activity_game.view.*
 
 class GameActivity : AppCompatActivity() {
 
@@ -31,12 +31,21 @@ class GameActivity : AppCompatActivity() {
 
         timeUp(player)
 
-        var a :Canvas= Canvas()
-        //val myp = BitmapFactory.decodeResource(getResources(),R.drawable.abc)
+        //val myCanva = GameCanv(this)
 
-        //a.drawBitmap(myp,100,100,null)
+       /* var a :Canvas= Canvas()
+        var myp: Bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.kamien)
 
-        //canv.draw(a)
+         val textPaint =
+            Paint().apply {
+                isAntiAlias = true
+                color = Color.RED
+                style = Paint.Style.STROKE
+            }
+        a.drawBitmap(myp,0f,0f, textPaint)
+*/
+        //canv.draw(myCanva.extraCanvas)
+       // canv.draw(a)
     }
 
 
@@ -45,8 +54,9 @@ class GameActivity : AppCompatActivity() {
 
 
     fun timeUp(player: Player): Unit {
-
+       // Log.d("abc", player.login)
         ref.document(player.login).update("time",FieldValue.serverTimestamp()).addOnSuccessListener {
+            Log.d("abc", "b")
             val time = player.lTime
             var timen :Long = 0
             ref.document(player.login).get().addOnSuccessListener {

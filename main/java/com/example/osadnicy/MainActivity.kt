@@ -7,10 +7,6 @@ import android.util.Log
 import com.example.osadnicy.GameActivity
 import com.google.firebase.FirebaseApp
 import com.google.firebase.Timestamp
-import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreSettings
-import com.google.firebase.firestore.ServerTimestamp
 import com.google.firebase.firestore.model.value.ServerTimestampValue
 import com.google.firebase.firestore.model.value.TimestampValue
 import com.google.firestore.v1beta1.DocumentTransform
@@ -18,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
+import com.google.firebase.firestore.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -48,16 +44,14 @@ class MainActivity : AppCompatActivity() {
             .addOnSuccessListener { document ->
 
                 val fields = document.data
-                if (fields!!.get("Password").toString()==pass.hashCode().toString()) {
+                if (fields!!.get("password").toString()==pass.hashCode().toString()) {
 
-//                    val time :Timestamp = fields["time"] as Timestamp
+                    Log.d("abc",  document.get("time",DocumentSnapshot.ServerTimestampBehavior.ESTIMATE).toString())
+                    val time = document.getTimestamp("time", DocumentSnapshot.ServerTimestampBehavior.ESTIMATE)
+                        ?.seconds.toString()
 
-
-                    //val a = FieldValue.serverTimestamp()
-                    Log.d("abc",document.getTimestamp("time")?.seconds.toString())
-                    //var timestamp = ServerTimestampValue(12,32,)
-                    //Log.d("abc", document.metadata.toString())
-                    val player :Player= Player(document.get("Login").toString(), document.get("wood").toString().toInt(), document.get("stone").toString().toString().toInt(), document.get("wheat").toString().toInt(), document.getTimestamp("time")!!.seconds)
+                    fields.put("time1", time.toString() )
+                    val player = Player(fields)
 
                     val intent = Intent(this, GameActivity::class.java)
                     intent.putExtra("player", player)

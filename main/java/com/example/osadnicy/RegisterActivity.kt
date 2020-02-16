@@ -20,11 +20,15 @@ class RegisterActivity : AppCompatActivity() {
         val pass = passs.hashCode().toString()
 
         val data: HashMap<String, Any> = hashMapOf(
-            "Login" to login,
-            "Password" to pass,
+            "login" to login,
+            "password" to pass,
             "wood" to 0,
             "stone" to 0,
             "wheat" to 0,
+            "levWheat" to 0,
+            "levWood" to 0,
+            "levStone" to 0,
+            "levCastle" to 0,
             "time" to FieldValue.serverTimestamp()
         )
 

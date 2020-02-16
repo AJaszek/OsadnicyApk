@@ -77,13 +77,12 @@
 
         </LinearLayout>
 
-        <View
-            android:id="@+id/canv"
+        <com.example.osadnicy.GameCanv
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/laka"
-            android:visibility="visible"
-            tools:visibility="visible" />
+
+            android:background="@drawable/laka" />
+
 
     </LinearLayout>
 
